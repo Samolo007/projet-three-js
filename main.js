@@ -37,6 +37,8 @@ const gltfLoader = new GLTFLoader();
 gltfLoader.load("modele/Untitled2.glb", (gltf) => {
     const model = gltf.scene;
     scene.add(model);
+    const film = await getMovieInfo("Inception");
+    console.log(film);
 
     const armoire = model.getObjectByName("Object_18");
 
