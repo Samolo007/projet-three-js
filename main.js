@@ -37,6 +37,8 @@ const gltfLoader = new GLTFLoader();
 gltfLoader.load("modele/Untitled2.glb", (gltf) => {
     const model = gltf.scene;
     scene.add(model);
+
+    // --- FONCTION POUR RÉCUPÉRER LES INFOS D'UN FILM DEPUIS L'API OMDB ---
     const film = await getMovieInfo("Inception");
     console.log(film);
 
