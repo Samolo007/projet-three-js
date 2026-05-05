@@ -1,0 +1,202 @@
+ * {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+ }
+
+ body {
+     overflow: hidden;
+     background: #1a1a1a;
+ }
+
+ /* ── OVERLAY QUIZ ── */
+ #quiz-overlay {
+     position: fixed;
+     inset: 0;
+     display: none;
+     align-items: flex-end;
+     justify-content: center;
+     padding-bottom: 50px;
+     z-index: 100;
+ }
+
+ #quiz-panel {
+     background: rgba(8, 8, 8, 0.88);
+     border: 1px solid rgba(255, 255, 255, 0.1);
+     border-top: 2px solid #e50914;
+     border-radius: 12px;
+     padding: 26px 32px 22px;
+     width: min(500px, 92vw);
+     box-shadow: 0 -4px 60px rgba(229, 9, 20, 0.15), 0 20px 80px rgba(0, 0, 0, 0.8);
+     backdrop-filter: blur(20px);
+     transform: translateY(60px);
+     opacity: 0;
+     animation: slideUp 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+     position: relative;
+     font-family: 'Courier New', monospace;
+ }
+
+ @keyframes slideUp {
+     to {
+         transform: translateY(0);
+         opacity: 1;
+     }
+ }
+
+ #quiz-close {
+     position: absolute;
+     top: 12px;
+     right: 16px;
+     color: rgba(255, 255, 255, 0.3);
+     cursor: pointer;
+     font-size: 18px;
+     line-height: 1;
+     transition: color 0.2s;
+     font-family: sans-serif;
+ }
+
+ #quiz-close:hover {
+     color: #e50914;
+ }
+
+ #quiz-label {
+     font-size: 0.65rem;
+     letter-spacing: 0.2em;
+     text-transform: uppercase;
+     color: #e50914;
+     margin-bottom: 8px;
+ }
+
+ #quiz-question {
+     color: #f5f5f1;
+     font-size: 1.05rem;
+     margin-bottom: 18px;
+     font-weight: bold;
+     letter-spacing: 0.03em;
+ }
+
+ #quiz-input-row {
+     display: flex;
+     gap: 8px;
+ }
+
+ #quiz-input {
+     flex: 1;
+     background: rgba(255, 255, 255, 0.06);
+     border: 1px solid rgba(255, 255, 255, 0.18);
+     border-radius: 6px;
+     padding: 12px 16px;
+     color: #fff;
+     font-size: 0.95rem;
+     font-family: inherit;
+     outline: none;
+     transition: border-color 0.2s, background 0.2s;
+ }
+
+ #quiz-input:focus {
+     border-color: #e50914;
+     background: rgba(229, 9, 20, 0.06);
+ }
+
+ #quiz-input::placeholder {
+     color: rgba(255, 255, 255, 0.3);
+ }
+
+ #quiz-submit {
+     background: #e50914;
+     border: none;
+     border-radius: 6px;
+     color: #fff;
+     font-weight: bold;
+     font-size: 1rem;
+     padding: 0 22px;
+     cursor: pointer;
+     transition: background 0.2s, transform 0.1s;
+     font-family: inherit;
+     letter-spacing: 0.05em;
+ }
+
+ #quiz-submit:hover {
+     background: #f40612;
+     transform: scale(1.04);
+ }
+
+ #quiz-submit:active {
+     transform: scale(0.97);
+ }
+
+ #quiz-submit:disabled {
+     opacity: 0.5;
+     cursor: default;
+ }
+
+ #quiz-feedback {
+     margin-top: 12px;
+     font-size: 0.82rem;
+     min-height: 18px;
+     color: rgba(255, 255, 255, 0.4);
+     transition: color 0.3s;
+     letter-spacing: 0.04em;
+ }
+
+ .feedback-correct {
+     color: #46d369 !important;
+ }
+
+ .feedback-wrong {
+     color: #e50914 !important;
+ }
+
+ .feedback-loading {
+     color: rgba(255, 255, 255, 0.5) !important;
+ }
+
+ /* ── INFO FILM (après bonne réponse) ── */
+ #movie-info {
+     display: none;
+     margin-top: 18px;
+     border-top: 1px solid rgba(255, 255, 255, 0.08);
+     padding-top: 16px;
+     gap: 14px;
+     align-items: flex-start;
+ }
+
+ #movie-info.visible {
+     display: flex;
+ }
+
+ #movie-poster {
+     width: 64px;
+     min-width: 64px;
+     height: 95px;
+     object-fit: cover;
+     border-radius: 4px;
+     border: 1px solid rgba(255, 255, 255, 0.1);
+ }
+
+ #movie-details {
+     flex: 1;
+ }
+
+ #movie-title-text {
+     font-size: 0.9rem;
+     font-weight: bold;
+     color: #f5f5f1;
+     margin-bottom: 4px;
+ }
+
+ #movie-year {
+     font-size: 0.75rem;
+     color: #aaa;
+     margin-bottom: 6px;
+ }
+
+ #movie-plot {
+     font-size: 0.72rem;
+     color: rgba(255, 255, 255, 0.55);
+     line-height: 1.5;
+     display: -webkit-box;
+     -webkit-line-clamp: 3;
+     -webkit-box-orient: vertical;
+     overflow: hidden;
+ }

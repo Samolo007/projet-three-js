@@ -236,7 +236,6 @@ function resetPrevious(onDone) {
 
     const key = currentFilmKey;
     const obj = activeObject;
-
     hideQuiz();
 
     gsap.to(obj.position, {
@@ -304,3 +303,12 @@ window.addEventListener('click', (event) => {
     if (window.livre3 && raycaster.intersectObject(window.livre3, true).length > 0) { handleClick(window.livre3, 'livre3'); return; }
     if (window.livre4 && raycaster.intersectObject(window.livre4, true).length > 0) { handleClick(window.livre4, 'livre4'); return; }
 });
+
+window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+});
+
+
