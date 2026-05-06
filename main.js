@@ -4,6 +4,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import gsap from 'gsap';
 import { getMovieInfo } from './API.js';
 
+
 const canvas = document.querySelector('.webgl1');
 const scene = new THREE.Scene();
 
@@ -34,14 +35,16 @@ const FILMS = {
     livre2: { correctTitle: "Tyler Rake" },
     livre3: { correctTitle: " Alerte cobra" },
     livre3: { correctTitle: "Alerte Cobra" },
-    livre4: { correctTitle: "SWAT" }
+    livre4: { correctTitle: "SWAT" },
+    livre5: { correctTitle: "Sherlock" }
 };
 //Fournir les positions Z originales pour chaque livre afin de les remettre en place après le quiz
 const ORIGINAL_Z = {
     livre:  -0.1,
     livre2: -0.1,
     livre3: -0.1,
-    livre4: -0.1
+    livre4: -0.1,
+    livre5: -0.1
 };
 
 // ============================================================
@@ -135,7 +138,7 @@ input.addEventListener('keydown', (e) => { if (e.key === 'Enter') handleSubmit()
 // ============================================================
 // === CHARGEMENT DES MODÈLES
 // ============================================================
-gltfLoader.load("modele/Untitled2.glb", (gltf) => {
+gltfLoader.load("/modele/Untitled2.glb", (gltf) => {
     const model = gltf.scene;
     scene.add(model);
 
@@ -147,32 +150,39 @@ gltfLoader.load("modele/Untitled2.glb", (gltf) => {
 
         controls.target.set(worldPos.x, worldPos.y, worldPos.z);
 
-        gltfLoader.load("modele/ferrari blender.glb", (gltf) => {
+        gltfLoader.load("/modele/ferrari blender.glb", (gltf) => {
             window.livre = gltf.scene;
             armoire.add(window.livre);
             window.livre.position.set(0, 0.15, -0.1);
             window.livre.scale.set(0.1, 0.1, 0.1);
         });
 
-        gltfLoader.load("modele/TylerRake.glb", (gltf) => {
+        gltfLoader.load("/modele/TylerRake.glb", (gltf) => {
             window.livre2 = gltf.scene;
             armoire.add(window.livre2);
             window.livre2.position.set(-0.3, 1.65, -0.1);
             window.livre2.scale.set(0.1, 0.1, 0.1);
         });
 
-        gltfLoader.load("modele/alertecobra.glb", (gltf) => {
+        gltfLoader.load("/modele/alertecobra.glb", (gltf) => {
             window.livre3 = gltf.scene;
             armoire.add(window.livre3);
             window.livre3.position.set(0.3, 0.15, -0.1);
             window.livre3.scale.set(0.1, 0.1, 0.1);
         });
 
-        gltfLoader.load("modele/livre_swat.glb", (gltf) => {
+        gltfLoader.load("/modele/livre_swat.glb", (gltf) => {
             window.livre4 = gltf.scene;
             armoire.add(window.livre4);
-            window.livre4.position.set(0, 1.65, -0.1);
+            window.livre4.position.set(0.3, 1.65, -0.1);
             window.livre4.scale.set(0.1, 0.1, 0.1);
+        });
+
+        gltfLoader.load("/modele/livre_sherlock.glb", (gltf) => {
+            window.livre5 = gltf.scene;
+            armoire.add(window.livre5);
+            window.livre5.position.set(0.3, 1, -0.1);
+            window.livre5.scale.set(0.1, 0.1, 0.1);
         });
 
         controls.update();
@@ -303,6 +313,7 @@ window.addEventListener('click', (event) => {
     if (window.livre2 && raycaster.intersectObject(window.livre2, true).length > 0) { handleClick(window.livre2, 'livre2'); return; }
     if (window.livre3 && raycaster.intersectObject(window.livre3, true).length > 0) { handleClick(window.livre3, 'livre3'); return; }
     if (window.livre4 && raycaster.intersectObject(window.livre4, true).length > 0) { handleClick(window.livre4, 'livre4'); return; }
+    if (window.livre5 && raycaster.intersectObject(window.livre5, true).length > 0) { handleClick(window.livre5, 'livre5'); return; }
 });
 
 window.addEventListener('resize', () => {
