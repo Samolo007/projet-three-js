@@ -292,8 +292,9 @@ gltfLoader.load("/modele/Untitled2.glb", (gltf) => {
                     controls.enabled = true;
 
                     // ── VERTICAL : de presque le plafond jusqu'au sol ──
-                    controls.minPolarAngle = Math.PI / 3;   
-                    controls.maxPolarAngle = Math.PI / 3; // ~112° → peut regarder en bas
+                    controls.minPolarAngle = Math.PI / 2.5;   
+                    controls.maxPolarAngle = Math.PI / 2.5 ;
+                    controls.enablePan = true; // ~112° → peut regarder en bas
 
                     // ── HORIZONTAL : 90° de chaque côté pour explorer la pièce ──
                     controls.minAzimuthAngle = 0;
@@ -380,7 +381,19 @@ function zoomToObject(targetPos, livreObj, filmKey) {
 // === GESTION DES CLICS
 // ============================================================
 function handleClick(livreObj, filmKey) {
-    if (activeObject === livreObj) return;
+   if (activeObject === livreObj) {
+        hideQuiz();
+        gsap.to(livreObj.position, {
+            z: ORIGINAL_Z[filmKey],
+            duration: 0.8,
+            ease: "power2.inOut",
+            onComplete: () => {
+                activeObject = null;
+                currentFilmKey = null;
+            }
+        });
+        return;
+    }
     const targetPos = new THREE.Vector3();
     livreObj.getWorldPosition(targetPos);
     resetPrevious(() => zoomToObject(targetPos, livreObj, filmKey));
@@ -414,3 +427,4 @@ window.addEventListener('resize', () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 });
+
