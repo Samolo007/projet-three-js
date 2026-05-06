@@ -31,12 +31,13 @@ const gltfLoader = new GLTFLoader();
 
 //Mettre le titre correct des films pour le quiz
 const FILMS = {
-    livre:  { correctTitle: "MAGNUM" },
-    livre2: { correctTitle: "TYLER RAKE" },
-    livre3: { correctTitle: "ALERTE COBRA" },
-    livre3: { correctTitle: "ALERTE COBRA" },
+
+    livre:  { correctTitle: "Magnum" },
+    livre2: { correctTitle: "Tyler Rake" },
+    livre3: { correctTitle: " Alerte cobra" },
     livre4: { correctTitle: "SWAT" },
-    livre5: { correctTitle: "SHERLOCK" }
+    livre5: { correctTitle: "Sherlock" },
+    livre6: { correctTitle: "ROOKIE: Le flic de los Angeles" }
 };
 //Fournir les positions Z originales pour chaque livre afin de les remettre en place après le quiz
 const ORIGINAL_Z = {
@@ -44,7 +45,8 @@ const ORIGINAL_Z = {
     livre2: -0.1,
     livre3: -0.1,
     livre4: -0.1,
-    livre5: -0.1
+    livre5: -0.1,
+    livre6: -0.1
 };
 
 // ============================================================
@@ -184,6 +186,12 @@ gltfLoader.load("/modele/Untitled2.glb", (gltf) => {
             window.livre5.position.set(0.3, 1, -0.1);
             window.livre5.scale.set(0.1, 0.1, 0.1);
         });
+        gltfLoader.load("/modele/LCA.glb", (gltf) => {
+            window.livre6 = gltf.scene;
+            armoire.add(window.livre6);
+            window.livre6.position.set(0.7, 1.35, -0.1);
+            window.livre6.scale.set(0.1, 0.1, 0.1);
+        });
 
         gltfLoader.load("/modele/livre_casadepapel.glb", (gltf) => {
             window.livre6 = gltf.scene;
@@ -225,7 +233,7 @@ gltfLoader.load("/modele/Untitled2.glb", (gltf) => {
                     controls.maxPolarAngle = Math.PI / 3; // ~112° → peut regarder en bas
 
                     // ── HORIZONTAL : 90° de chaque côté pour explorer la pièce ──
-                    controls.minAzimuthAngle = -Math.PI / 2;
+                    controls.minAzimuthAngle = 0;
                     controls.maxAzimuthAngle =  Math.PI / 2;
 
                     // ── ZOOM : reste dans la pièce ──
@@ -282,8 +290,8 @@ function zoomToObject(targetPos, livreObj, filmKey) {
     currentFilmKey = filmKey;
 
     gsap.to(camera.position, {
-        x: targetPos.x,
-        y: targetPos.y,
+        x: targetPos.x ,
+        y: targetPos.y + 0.3,
         z: targetPos.z + 1,
         duration: 1.5,
         ease: "power2.inOut"
@@ -291,7 +299,7 @@ function zoomToObject(targetPos, livreObj, filmKey) {
 
     gsap.to(controls.target, {
         x: targetPos.x,
-        y: targetPos.y,
+        y: targetPos.y - 0.5,
         z: targetPos.z,
         duration: 1.5,
         onUpdate: () => { camera.lookAt(targetPos); }
@@ -328,6 +336,7 @@ window.addEventListener('click', (event) => {
     if (window.livre3 && raycaster.intersectObject(window.livre3, true).length > 0) { handleClick(window.livre3, 'livre3'); return; }
     if (window.livre4 && raycaster.intersectObject(window.livre4, true).length > 0) { handleClick(window.livre4, 'livre4'); return; }
     if (window.livre5 && raycaster.intersectObject(window.livre5, true).length > 0) { handleClick(window.livre5, 'livre5'); return; }
+    if (window.livre6 && raycaster.intersectObject(window.livre6, true).length > 0) { handleClick(window.livre6, 'livre6'); return; }
 });
 
 window.addEventListener('resize', () => {
@@ -336,5 +345,3 @@ window.addEventListener('resize', () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 });
-
-
