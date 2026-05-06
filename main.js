@@ -242,7 +242,7 @@ function resetPrevious(onDone) {
         z: ORIGINAL_Z[key],
         duration: 0.8,
         ease: "power2.inOut",
-        onComplete: () => {
+        onComplete: () => { 
             activeObject = null;
             onDone();
         }
