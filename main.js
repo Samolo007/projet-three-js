@@ -4,6 +4,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import gsap from 'gsap';
 import { getMovieInfo } from './API.js';
 
+
 const canvas = document.querySelector('.webgl1');
 const scene = new THREE.Scene();
 
@@ -35,7 +36,7 @@ const FILMS = {
     livre3: { correctTitle: " Alerte cobra" },
     livre3: { correctTitle: "Alerte Cobra" },
     livre4: { correctTitle: "SWAT" },
-    livre5: { correctTitle: "Blacklist" }
+    livre5: { correctTitle: "Sherlock" }
 };
 //Fournir les positions Z originales pour chaque livre afin de les remettre en place après le quiz
 const ORIGINAL_Z = {
