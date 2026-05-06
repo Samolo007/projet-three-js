@@ -31,21 +31,13 @@ const gltfLoader = new GLTFLoader();
 
 //Mettre le titre correct des films pour le quiz
 const FILMS = {
-<<<<<<< HEAD
+
     livre:  { correctTitle: "Magnum" },
     livre2: { correctTitle: "Tyler Rake" },
     livre3: { correctTitle: " Alerte cobra" },
     livre4: { correctTitle: "SWAT" },
     livre5: { correctTitle: "Sherlock" },
     livre6: { correctTitle: "ROOKIE: Le flic de los Angeles" }
-=======
-    livre:  { correctTitle: "MAGNUM" },
-    livre2: { correctTitle: "TYLER RAKE" },
-    livre3: { correctTitle: "ALERTE COBRA" },
-    livre3: { correctTitle: "ALERTE COBRA" },
-    livre4: { correctTitle: "SWAT" },
-    livre5: { correctTitle: "SHERLOCK" }
->>>>>>> 6000c3748a821467be8707700006062a40f8d6f2
 };
 //Fournir les positions Z originales pour chaque livre afin de les remettre en place après le quiz
 const ORIGINAL_Z = {
