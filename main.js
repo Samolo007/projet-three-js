@@ -41,20 +41,19 @@ if (sessionStorage.getItem('playMusic') === 'true') {
 
 //Mettre le titre correct des films pour le quiz
 const FILMS = {
-
-    livre:  { correctTitle: "magnum" },
-    livre2: { correctTitle: "Tyler Rake" },
-    livre3: { correctTitle: " Alerte cobra" },
-    livre4: { correctTitle: "SWAT" },
-    livre5: { correctTitle: "Sherlock" },
-    livre6: { correctTitle: "ROOKIE: Le flic de los Angeles" },
-    livre7: { correctTitle: "casadepapel"},
-    livre8: { correctTitle: "lupin"},
-    livre9:{ correctTitle: "badboy"},
-    livre10:{ correctTitle: "Colombo"},
-    livre11:{correctTitle:"blacklist"},
-    livre12:{correctTitle:"hawai5.0"},
-    livre13:{correctTitle:"007"}
+    livre:  { correctTitle: "magnum",                         useApi: true },
+    livre2: { correctTitle: "Tyler Rake",                     useApi: false, annee: "2020", genre: "Action",    description: "Un mercenaire est engagé pour sauver le fils d'un baron de la drogue.",                           poster: "/images/tylerake.jpg" },
+    livre3: { correctTitle: "Alerte cobra",                   useApi: false, annee: "1986", genre: "Policier",  description: "Rex, un berger allemand, aide la police de Vienne à résoudre des crimes.",                      poster: "/images/alertecobra.jpg" },
+    livre4: { correctTitle: "SWAT",                           useApi: true },
+    livre5: { correctTitle: "Sherlock",                       useApi: true },
+    livre6: { correctTitle: "ROOKIE: Le flic de los Angeles", useApi: false, annee: "2018", genre: "Policier",  description: "Un ancien militaire de 40 ans devient le plus vieux rookie du LAPD.",                            poster: "/images/rookie.jpg" },
+    livre7: { correctTitle: "casadepapel",                    useApi: false, annee: "2017", genre: "Thriller",  description: "Un génie du crime planifie le braquage parfait de la Monnaie royale d'Espagne.",                 poster: "/images/casadepapel.jpg" },
+    livre8: { correctTitle: "lupin",                          useApi: true },
+    livre9: { correctTitle: "badboy",                         useApi: true },
+    livre10:{ correctTitle: "Colombo",                        useApi: false, annee: "1968", genre: "Policier",  description: "L'inspecteur Colombo résout des meurtres apparemment parfaits avec sa méthode unique.",           poster: "/images/colombo.jpg" },
+    livre11:{ correctTitle: "blacklist",                      useApi: true },
+    livre12:{ correctTitle: "hawai5.0",                       useApi: false, annee: "2010", genre: "Policier",  description: "Une unité d'élite de la police d'Hawaï résout les crimes les plus dangereux de l'île.",         poster: "/images/hawai.jpg" },
+    livre13:{ correctTitle: "007",                            useApi: false, annee: "1962", genre: "Action",    description: "James Bond, agent secret britannique, affronte les plus grands criminels du monde.",             poster: "/images/007.jpg" }
 };
 //Fournir les positions Z originales pour chaque livre afin de les remettre en place après le quiz
 const ORIGINAL_Z = {
@@ -86,6 +85,9 @@ const movieInfo = document.getElementById('movie-info');
 
 let currentFilmKey = null;
 let activeObject   = null;
+let correctCount = 0;
+const HALFWAY = 7;
+const foundFilms = new Set();
 
 function showQuiz(filmKey) {
     currentFilmKey = filmKey;
@@ -105,7 +107,6 @@ function hideQuiz() {
     overlay.style.display = 'none';
     currentFilmKey = null;
 }
-
 async function handleSubmit() {
     const userInput = input.value.trim();
     if (!userInput || !currentFilmKey) return;
@@ -114,55 +115,74 @@ async function handleSubmit() {
     feedback.textContent = '⏳ Recherche en cours...';
     feedback.className = 'feedback-loading';
 
-    const expectedTitle = FILMS[currentFilmKey].correctTitle;
+    const filmData      = FILMS[currentFilmKey];
+    const expectedTitle = filmData.correctTitle;
+    const userLower     = userInput.toLowerCase().trim();
+    const correctLower  = expectedTitle.toLowerCase().trim();
+    const isCorrect     = userLower === correctLower;
 
-    try {
-        const data = await getMovieInfo(userInput);
-
-        const apiTitle     = data?.Title?.toLowerCase().trim() ?? '';
-        const correctLower = expectedTitle.toLowerCase().trim();
-        const userLower    = userInput.toLowerCase().trim();
-        const isCorrect    = apiTitle === correctLower || userLower === correctLower;
-
-        if (data && data.Response !== "False" && isCorrect) {
-            correctSound.play();
-            feedback.textContent = `✅ Exact ! C'est bien "${data.Title}" !`;
-            feedback.className = 'feedback-correct';
-
-            document.getElementById('movie-title-text').textContent = `${data.Title} (${data.Year})`;
-            document.getElementById('movie-year').textContent = `⭐ ${data.imdbRating} / 10  •  ${data.Genre}`;
-            document.getElementById('movie-plot').textContent = data.Plot;
-
-            const poster = document.getElementById('movie-poster');
-            if (data.Poster && data.Poster !== 'N/A') {
-                poster.src = data.Poster;
-                poster.style.display = 'block';
-            } else {
-                poster.style.display = 'none';
-            }
-            movieInfo.classList.add('visible');
-            setTimeout(hideQuiz, 5000);
-
-        } else {
-            wrongSound.play();
-            feedback.textContent = '❌ Mauvaise réponse... Essaie encore !';
-            feedback.className = 'feedback-wrong';
-            submitBtn.disabled = false;
-            input.focus();
-            input.select();
-        }
-
-    } catch (e) {
-        feedback.textContent = '⚠️ Erreur réseau, réessaie.';
+    if (!isCorrect) {
+        wrongSound.play();
+        feedback.textContent = '❌ Mauvaise réponse... Essaie encore !';
         feedback.className = 'feedback-wrong';
         submitBtn.disabled = false;
+        input.focus();
+        input.select();
+        return;
+    }
+
+    // ── Bonne réponse ──
+    correctSound.play();
+    feedback.textContent = `✅ Exact !`;
+    feedback.className = 'feedback-correct';
+
+    if (filmData.useApi) {
+        // ── Données depuis l'API ──
+        try {
+            const data = await getMovieInfo(userInput);
+            if (data && data.Response !== "False") {
+                document.getElementById('movie-title-text').textContent = `${data.Title} (${data.Year})`;
+                document.getElementById('movie-year').textContent = `⭐ ${data.imdbRating} / 10  •  ${data.Genre}`;
+                document.getElementById('movie-plot').textContent = data.Plot;
+                const poster = document.getElementById('movie-poster');
+                if (data.Poster && data.Poster !== 'N/A') {
+                    poster.src = data.Poster;
+                    poster.style.display = 'block';
+                } else {
+                    poster.style.display = 'none';
+                }
+            }
+        } catch (e) {
+            console.warn('API indisponible');
+        }
+    } else {
+        // ── Données depuis le JSON local (FILMS) ──
+        document.getElementById('movie-title-text').textContent = `${filmData.correctTitle} (${filmData.annee})`;
+        document.getElementById('movie-year').textContent = filmData.genre;
+        document.getElementById('movie-plot').textContent = filmData.description;
+        const poster = document.getElementById('movie-poster');
+        if (filmData.poster) {
+            poster.src = filmData.poster;
+            poster.style.display = 'block';
+        } else {
+            poster.style.display = 'none';
+        }
+    }
+
+    movieInfo.classList.add('visible');
+    setTimeout(hideQuiz, 5000);
+    foundFilms.add(currentFilmKey);
+    correctCount++;
+    if (correctCount === HALFWAY) {
+        setTimeout(() => {
+            window.location.href = 'halfway.html';
+        }, 5500);
     }
 }
 
 document.getElementById('quiz-close').addEventListener('click', hideQuiz);
 submitBtn.addEventListener('click', handleSubmit);
 input.addEventListener('keydown', (e) => { if (e.key === 'Enter') handleSubmit(); });
-
 // ============================================================
 // === CHARGEMENT DES MODÈLES
 // ============================================================
@@ -227,7 +247,7 @@ gltfLoader.load("/modele/Untitled2.glb", (gltf) => {
             window.livre7.scale.set(0.1, 0.1, 0.1);
         });
 
-        gltfLoader.load("/modele/Lupin.glb", (gltf) => {
+        gltfLoader.load("/modele/lupin.glb", (gltf) => {
             window.livre8 = gltf.scene;
             armoire.add(window.livre8);
             window.livre8.position.set(0.3, 0.73, -0.1);
@@ -330,6 +350,12 @@ function resetPrevious(onDone) {
         onDone();
         return;
     }
+     if (foundFilms.has(currentFilmKey)) {
+        activeObject = null;
+        currentFilmKey = null;
+        onDone();
+        return;
+    }
 
     const key = currentFilmKey;
     const obj = activeObject;
@@ -381,6 +407,7 @@ function zoomToObject(targetPos, livreObj, filmKey) {
 // === GESTION DES CLICS
 // ============================================================
 function handleClick(livreObj, filmKey) {
+    if (foundFilms.has(filmKey)) return;
    if (activeObject === livreObj) {
         hideQuiz();
         gsap.to(livreObj.position, {
@@ -419,6 +446,7 @@ window.addEventListener('click', (event) => {
     if (window.livre10 && raycaster.intersectObject(window.livre10, true).length > 0) { handleClick(window.livre10, 'livre10'); return; }
     if (window.livre11 && raycaster.intersectObject(window.livre11, true).length > 0) { handleClick(window.livre11, 'livre11'); return; }
     if (window.livre12 && raycaster.intersectObject(window.livre12, true).length > 0) { handleClick(window.livre12, 'livre12'); return; }
+    if (window.livre13 && raycaster.intersectObject(window.livre13, true).length > 0) { handleClick(window.livre13, 'livre13'); return; }
 });
 
 window.addEventListener('resize', () => {

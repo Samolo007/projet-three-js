@@ -1,11 +1,12 @@
-import { defineConfig } from 'vite' // <--- IL MANQUE CETTE LIGNE
+import { defineConfig } from 'vite' 
 
 export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        main: 'index.html', // Ton accueil (l'ancien accueil.html renommé)
-        quiz: 'quiz.html'   // Ta scène 3D
+        main: 'index.html', 
+        quiz: 'quiz.html' ,
+       halfway: 'halfway.html' 
       }
     }
   }
