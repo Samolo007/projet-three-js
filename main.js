@@ -192,7 +192,7 @@ gltfLoader.load("/modele/Untitled2.glb", (gltf) => {
             window.livre5.position.set(0.3, 1.35, -0.1);
             window.livre5.scale.set(0.1, 0.1, 0.1);
         });
-<<<<<<< HEAD
+
         gltfLoader.load("/modele/LCA.glb", (gltf) => {
             window.livre6 = gltf.scene;
             armoire.add(window.livre6);
@@ -249,10 +249,6 @@ gltfLoader.load("/modele/Untitled2.glb", (gltf) => {
             window.livre7.position.set(0.8, 1.03, -0.1);
             window.livre7.scale.set(0.1, 0.1, 0.1);
         });
-
-=======
-         
->>>>>>> f91563a28125f46652eb156edc9c5a488247e18c
 
         controls.update();
 
