@@ -36,24 +36,24 @@ const wrongSound = new Audio('/bad.mp3');
 if (sessionStorage.getItem('playMusic') === 'true') {
     sessionStorage.removeItem('playMusic');
     bgMusic.play();
-    setTimeout(() => bgMusic.pause(), 5000); // ← arrête après 8s
+    setTimeout(() => bgMusic.pause(), 5000); 
 }
 
 //Mettre le titre correct des films pour le quiz
 const FILMS = {
     livre:  { correctTitle: "magnum",                         useApi: true },
-    livre2: { correctTitle: "Tyler Rake",                     useApi: false, annee: "2020", genre: "Action",    description: "Un mercenaire est engagé pour sauver le fils d'un baron de la drogue.",                           poster: "/images/tylerake.jpg" },
-    livre3: { correctTitle: "Alerte cobra",                   useApi: false, annee: "1986", genre: "Policier",  description: "Rex, un berger allemand, aide la police de Vienne à résoudre des crimes.",                      poster: "/images/alertecobra.jpg" },
+    livre2: { correctTitle: "Tyler Rake",                     useApi: false, annee: "2020", genre: "Action",    description: "Un mercenaire est engagé pour sauver le fils d'un baron de la drogue.",                           poster: "/tylerrake.jpg" },
+    livre3: { correctTitle: "Alerte cobra",                   useApi: false, annee: "1986", genre: "Policier",  description: "Rex, un berger allemand, aide la police de Vienne à résoudre des crimes.",                      poster: "/alertecobra.jpg" },
     livre4: { correctTitle: "SWAT",                           useApi: true },
     livre5: { correctTitle: "Sherlock",                       useApi: true },
-    livre6: { correctTitle: "ROOKIE: Le flic de los Angeles", useApi: false, annee: "2018", genre: "Policier",  description: "Un ancien militaire de 40 ans devient le plus vieux rookie du LAPD.",                            poster: "/images/rookie.jpg" },
-    livre7: { correctTitle: "casadepapel",                    useApi: false, annee: "2017", genre: "Thriller",  description: "Un génie du crime planifie le braquage parfait de la Monnaie royale d'Espagne.",                 poster: "/images/casadepapel.jpg" },
+    livre6: { correctTitle: "ROOKIE: Le flic de los Angeles", useApi: false, annee: "2018", genre: "Policier",  description: "Un ancien militaire de 40 ans devient le plus vieux rookie du LAPD.",                            poster: "/rookie.jpg" },
+    livre7: { correctTitle: "casa de papel",                  useApi: false, annee: "2017", genre: "Thriller",  description: "Un génie du crime planifie le braquage parfait de la Monnaie royale d'Espagne.",                 poster: "/casadepapel.jpg" },
     livre8: { correctTitle: "lupin",                          useApi: true },
     livre9: { correctTitle: "badboy",                         useApi: true },
-    livre10:{ correctTitle: "Colombo",                        useApi: false, annee: "1968", genre: "Policier",  description: "L'inspecteur Colombo résout des meurtres apparemment parfaits avec sa méthode unique.",           poster: "/images/colombo.jpg" },
+    livre10:{ correctTitle: "Columbo",                        useApi: false, annee: "1968", genre: "Policier",  description: "L'inspecteur Colombo résout des meurtres apparemment parfaits avec sa méthode unique.",           poster: "/colombo.jpg" },
     livre11:{ correctTitle: "blacklist",                      useApi: true },
-    livre12:{ correctTitle: "hawai5.0",                       useApi: false, annee: "2010", genre: "Policier",  description: "Une unité d'élite de la police d'Hawaï résout les crimes les plus dangereux de l'île.",         poster: "/images/hawai.jpg" },
-    livre13:{ correctTitle: "007",                            useApi: false, annee: "1962", genre: "Action",    description: "James Bond, agent secret britannique, affronte les plus grands criminels du monde.",             poster: "/images/007.jpg" }
+    livre12:{ correctTitle: "hawai5.0",                       useApi: false, annee: "2010", genre: "Policier",  description: "Une unité d'élite de la police d'Hawaï résout les crimes les plus dangereux de l'île.",         poster: "/hawai.jpg" },
+    livre13:{ correctTitle: "007",                            useApi: false, annee: "1962", genre: "Action",    description: "James Bond, agent secret britannique, affronte les plus grands criminels du monde.",             poster: "/007.jpg" }
 };
 //Fournir les positions Z originales pour chaque livre afin de les remettre en place après le quiz
 const ORIGINAL_Z = {
@@ -86,7 +86,7 @@ const movieInfo = document.getElementById('movie-info');
 let currentFilmKey = null;
 let activeObject   = null;
 let correctCount = 0;
-const HALFWAY = 7;
+const HALFWAY = 13;
 const foundFilms = new Set();
 
 function showQuiz(filmKey) {
@@ -131,13 +131,11 @@ async function handleSubmit() {
         return;
     }
 
-    // ── Bonne réponse ──
     correctSound.play();
     feedback.textContent = `✅ Exact !`;
     feedback.className = 'feedback-correct';
 
     if (filmData.useApi) {
-        // ── Données depuis l'API ──
         try {
             const data = await getMovieInfo(userInput);
             if (data && data.Response !== "False") {
@@ -156,7 +154,6 @@ async function handleSubmit() {
             console.warn('API indisponible');
         }
     } else {
-        // ── Données depuis le JSON local (FILMS) ──
         document.getElementById('movie-title-text').textContent = `${filmData.correctTitle} (${filmData.annee})`;
         document.getElementById('movie-year').textContent = filmData.genre;
         document.getElementById('movie-plot').textContent = filmData.description;
@@ -173,10 +170,10 @@ async function handleSubmit() {
     setTimeout(hideQuiz, 5000);
     foundFilms.add(currentFilmKey);
     correctCount++;
-    if (correctCount === HALFWAY) {
+    if (correctCount === TOTAL) {
         setTimeout(() => {
             window.location.href = 'halfway.html';
-        }, 5500);
+        }, 5100);
     }
 }
 
@@ -311,16 +308,13 @@ gltfLoader.load("/modele/Untitled2.glb", (gltf) => {
                 onComplete: () => {
                     controls.enabled = true;
 
-                    // ── VERTICAL : de presque le plafond jusqu'au sol ──
                     controls.minPolarAngle = Math.PI / 2.5;   
                     controls.maxPolarAngle = Math.PI / 2.5 ;
-                    controls.enablePan = true; // ~112° → peut regarder en bas
+                    controls.enablePan = true;
 
-                    // ── HORIZONTAL : 90° de chaque côté pour explorer la pièce ──
                     controls.minAzimuthAngle = 0;
                     controls.maxAzimuthAngle =  Math.PI / 2;
 
-                    // ── ZOOM : reste dans la pièce ──
                     controls.minDistance = 0.2;
                     controls.maxDistance = 5;
 

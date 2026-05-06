@@ -4,11 +4,13 @@
     box-sizing: border-box;
 }
 
-body, html {
+body,
+html {
     height: 100%;
     font-family: 'Segoe UI', Roboto, sans-serif;
-    overflow: hidden; 
+    overflow: hidden;
 }
+
 .hero-container {
     height: 100vh;
     width: 100%;
@@ -17,7 +19,7 @@ body, html {
     justify-content: center;
     align-items: center;
     position: relative;
-    
+
     background: url('police.jpg') no-repeat center center/cover;
 }
 
@@ -25,9 +27,12 @@ body, html {
 .hero-container::before {
     content: "";
     position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0, 0, 0, 0.4); 
-    backdrop-filter: blur(8px); 
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
     z-index: 1;
 }
 
@@ -56,11 +61,11 @@ body, html {
     font-size: 1.2rem;
     font-weight: bold;
     padding: 15px 40px;
-    border: 2px solid white; 
+    border: 2px solid white;
     border-radius: 50px;
     text-transform: uppercase;
     letter-spacing: 2px;
-    transition: all 0.4s ease; 
+    transition: all 0.4s ease;
     background: rgba(255, 255, 255, 0.1);
     display: inline-block;
 }
@@ -69,19 +74,30 @@ body, html {
 .btn-start:hover {
     background: white;
     color: black;
-    border-color: #00d4ff; 
-    box-shadow: 0 0 20px #00d4ff, 0 0 40px #00d4ff; 
-    transform: scale(1.1); 
+    border-color: #00d4ff;
+    box-shadow: 0 0 20px #00d4ff, 0 0 40px #00d4ff;
+    transform: scale(1.1);
 }
 
 @keyframes pulse {
-    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4); }
-    70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(255, 255, 255, 0); }
-    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+    }
+
+    70% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 15px rgba(255, 255, 255, 0);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    }
 }
 
 .btn-start {
-    animation: pulse 2s infinite; 
+    animation: pulse 2s infinite;
 }
 
 /* --- RESPONSIVE DESIGN --- */
@@ -89,27 +105,27 @@ body, html {
 /* Pour les tablettes (écrans de moins de 1024px) */
 @media (max-width: 1024px) {
     .site-title {
-        font-size: 4rem; 
+        font-size: 4rem;
         letter-spacing: 6px;
     }
 }
 
 
-    .hero-container {
-        background-size: 90%; 
-    }
+.hero-container {
+    background-size: 90%;
+}
 
-    .site-title {
-        font-size: 2.5rem; 
-        letter-spacing: 4px;
-        padding: 0 20px; 
+.site-title {
+    font-size: 2.5rem;
+    letter-spacing: 4px;
+    padding: 0 20px;
 
     .footer-action {
-        bottom: 50px; 
+        bottom: 50px;
     }
 
     .btn-start {
-        font-size: 0.9rem; 
+        font-size: 0.9rem;
         letter-spacing: 1px;
     }
 }
