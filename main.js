@@ -219,7 +219,7 @@ gltfLoader.load("/modele/Untitled2.glb", (gltf) => {
                     controls.maxPolarAngle = Math.PI / 3; // ~112° → peut regarder en bas
 
                     // ── HORIZONTAL : 90° de chaque côté pour explorer la pièce ──
-                    controls.minAzimuthAngle = -Math.PI / 2;
+                    controls.minAzimuthAngle = 0;
                     controls.maxAzimuthAngle =  Math.PI / 2;
 
                     // ── ZOOM : reste dans la pièce ──
@@ -276,8 +276,8 @@ function zoomToObject(targetPos, livreObj, filmKey) {
     currentFilmKey = filmKey;
 
     gsap.to(camera.position, {
-        x: targetPos.x,
-        y: targetPos.y,
+        x: targetPos.x ,
+        y: targetPos.y + 0.3,
         z: targetPos.z + 1,
         duration: 1.5,
         ease: "power2.inOut"
@@ -285,7 +285,7 @@ function zoomToObject(targetPos, livreObj, filmKey) {
 
     gsap.to(controls.target, {
         x: targetPos.x,
-        y: targetPos.y,
+        y: targetPos.y - 0.5,
         z: targetPos.z,
         duration: 1.5,
         onUpdate: () => { camera.lookAt(targetPos); }
@@ -331,5 +331,3 @@ window.addEventListener('resize', () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 });
-
-
