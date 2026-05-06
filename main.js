@@ -30,6 +30,8 @@ scene.add(directionalLight);
 const gltfLoader = new GLTFLoader();
 const bgMusic = new Audio('/policesiren2-SF.mp3');
 bgMusic.loop = true;
+const correctSound = new Audio('/good.mp3');
+const wrongSound = new Audio('/bad.mp3');
  
 if (sessionStorage.getItem('playMusic') === 'true') {
     sessionStorage.removeItem('playMusic');
@@ -123,6 +125,7 @@ async function handleSubmit() {
         const isCorrect    = apiTitle === correctLower || userLower === correctLower;
 
         if (data && data.Response !== "False" && isCorrect) {
+            correctSound.play();
             feedback.textContent = `✅ Exact ! C'est bien "${data.Title}" !`;
             feedback.className = 'feedback-correct';
 
@@ -141,6 +144,7 @@ async function handleSubmit() {
             setTimeout(hideQuiz, 5000);
 
         } else {
+            wrongSound.play();
             feedback.textContent = '❌ Mauvaise réponse... Essaie encore !';
             feedback.className = 'feedback-wrong';
             submitBtn.disabled = false;
