@@ -46,7 +46,13 @@ const ORIGINAL_Z = {
     livre3: -0.1,
     livre4: -0.1,
     livre5: -0.1,
-    livre6: -0.1
+    livre6: -0.1,
+    livre7: -0.1,
+    livre8: -0.1,
+    livre9: -0.1,
+    livre10: -0.1,
+    livre11: -0.1,
+    livre12: -0.1
 };
 
 // ============================================================
@@ -374,6 +380,12 @@ window.addEventListener('click', (event) => {
     if (window.livre4 && raycaster.intersectObject(window.livre4, true).length > 0) { handleClick(window.livre4, 'livre4'); return; }
     if (window.livre5 && raycaster.intersectObject(window.livre5, true).length > 0) { handleClick(window.livre5, 'livre5'); return; }
     if (window.livre6 && raycaster.intersectObject(window.livre6, true).length > 0) { handleClick(window.livre6, 'livre6'); return; }
+    if (window.livre7 && raycaster.intersectObject(window.livre7, true).length > 0) { handleClick(window.livre7, 'livre7'); return; }
+    if (window.livre8 && raycaster.intersectObject(window.livre8, true).length > 0) { handleClick(window.livre8, 'livre8'); return; }
+    if (window.livre9 && raycaster.intersectObject(window.livre9, true).length > 0) { handleClick(window.livre9, 'livre9'); return; }
+    if (window.livre10 && raycaster.intersectObject(window.livre10, true).length > 0) { handleClick(window.livre10, 'livre10'); return; }
+    if (window.livre11 && raycaster.intersectObject(window.livre11, true).length > 0) { handleClick(window.livre11, 'livre11'); return; }
+    if (window.livre12 && raycaster.intersectObject(window.livre12, true).length > 0) { handleClick(window.livre12, 'livre12'); return; }
 });
 
 window.addEventListener('resize', () => {
