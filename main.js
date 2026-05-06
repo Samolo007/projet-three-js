@@ -34,9 +34,9 @@ const FILMS = {
     livre:  { correctTitle: "Magnum" },
     livre2: { correctTitle: "Tyler Rake" },
     livre3: { correctTitle: " Alerte cobra" },
-    livre3: { correctTitle: "Alerte Cobra" },
     livre4: { correctTitle: "SWAT" },
-    livre5: { correctTitle: "Sherlock" }
+    livre5: { correctTitle: "Sherlock" },
+    livre6: { correctTitle: "ROOKIE: Le flic de los Angeles" }
 };
 //Fournir les positions Z originales pour chaque livre afin de les remettre en place après le quiz
 const ORIGINAL_Z = {
@@ -44,7 +44,8 @@ const ORIGINAL_Z = {
     livre2: -0.1,
     livre3: -0.1,
     livre4: -0.1,
-    livre5: -0.1
+    livre5: -0.1,
+    livre6: -0.1
 };
 
 // ============================================================
@@ -184,6 +185,12 @@ gltfLoader.load("/modele/Untitled2.glb", (gltf) => {
             window.livre5.position.set(0.3, 1, -0.1);
             window.livre5.scale.set(0.1, 0.1, 0.1);
         });
+        gltfLoader.load("/modele/LCA.glb", (gltf) => {
+            window.livre6 = gltf.scene;
+            armoire.add(window.livre6);
+            window.livre6.position.set(0.7, 1.35, -0.1);
+            window.livre6.scale.set(0.1, 0.1, 0.1);
+        });
 
         controls.update();
 
@@ -314,6 +321,7 @@ window.addEventListener('click', (event) => {
     if (window.livre3 && raycaster.intersectObject(window.livre3, true).length > 0) { handleClick(window.livre3, 'livre3'); return; }
     if (window.livre4 && raycaster.intersectObject(window.livre4, true).length > 0) { handleClick(window.livre4, 'livre4'); return; }
     if (window.livre5 && raycaster.intersectObject(window.livre5, true).length > 0) { handleClick(window.livre5, 'livre5'); return; }
+    if (window.livre6 && raycaster.intersectObject(window.livre6, true).length > 0) { handleClick(window.livre6, 'livre6'); return; }
 });
 
 window.addEventListener('resize', () => {
