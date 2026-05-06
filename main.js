@@ -30,9 +30,9 @@ const gltfLoader = new GLTFLoader();
 
 //Mettre le titre correct des films pour le quiz
 const FILMS = {
-    livre:  { correctTitle: "Ferrari" },
-    livre2: { correctTitle: "Extraction" },
-    livre3: { correctTitle: "Cobra" },
+    livre:  { correctTitle: "Magnum" },
+    livre2: { correctTitle: "Tyler rake" },
+    livre3: { correctTitle: " Alerte cobra" },
     livre4: { correctTitle: "SWAT" }
 };
 //Fournir les positions Z originales pour chaque livre afin de les remettre en place après le quiz
