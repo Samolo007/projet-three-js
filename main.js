@@ -183,7 +183,7 @@ gltfLoader.load("/modele/Untitled2.glb", (gltf) => {
         gltfLoader.load("/modele/livre_sherlock.glb", (gltf) => {
             window.livre5 = gltf.scene;
             armoire.add(window.livre5);
-            window.livre5.position.set(0.3, 1, -0.1);
+            window.livre5.position.set(0.3, 1.35, -0.1);
             window.livre5.scale.set(0.1, 0.1, 0.1);
         });
         gltfLoader.load("/modele/LCA.glb", (gltf) => {
@@ -196,15 +196,22 @@ gltfLoader.load("/modele/Untitled2.glb", (gltf) => {
         gltfLoader.load("/modele/livre_casadepapel.glb", (gltf) => {
             window.livre8 = gltf.scene;
             armoire.add(window.livre8);
-            window.livre8.position.set(0.3, 1.33, -0.1);
+            window.livre8.position.set(0.3, 1.03, -0.1);
             window.livre8.scale.set(0.1, 0.1, 0.1);
         });
 
         gltfLoader.load("/modele/Louvrepyramide.glb", (gltf) => {
             window.livre9 = gltf.scene;
             armoire.add(window.livre9);
-            window.livre9.position.set(0.3, 0.75, -0.1);
+            window.livre9.position.set(0.3, 0.73, -0.1);
             window.livre9.scale.set(0.1, 0.1, 0.1);
+        });
+
+        gltfLoader.load("/modele/livre_badboy.glb", (gltf) => {
+            window.livre10 = gltf.scene;
+            armoire.add(window.livre10);
+            window.livre10.position.set(0.3, 0.42, -0.1);
+            window.livre10.scale.set(0.1, 0.1, 0.1);
         });
 
         controls.update();
