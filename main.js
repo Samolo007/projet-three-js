@@ -155,7 +155,7 @@ gltfLoader.load("/modele/Untitled2.glb", (gltf) => {
         gltfLoader.load("/modele/ferrari blender.glb", (gltf) => {
             window.livre = gltf.scene;
             armoire.add(window.livre);
-            window.livre.position.set(0, 0.15, -0.1);
+            window.livre.position.set(1.1, 0.15, -0.1);
             window.livre.scale.set(0.1, 0.1, 0.1);
         });
 
@@ -169,14 +169,14 @@ gltfLoader.load("/modele/Untitled2.glb", (gltf) => {
         gltfLoader.load("/modele/alertecobra.glb", (gltf) => {
             window.livre3 = gltf.scene;
             armoire.add(window.livre3);
-            window.livre3.position.set(0.3, 0.15, -0.1);
+            window.livre3.position.set(-0.3, 0.15, -0.1);
             window.livre3.scale.set(0.1, 0.1, 0.1);
         });
 
         gltfLoader.load("/modele/livre_swat.glb", (gltf) => {
             window.livre4 = gltf.scene;
             armoire.add(window.livre4);
-            window.livre4.position.set(0.3, 1.65, -0.1);
+            window.livre4.position.set(1.2, 1.65, -0.1);
             window.livre4.scale.set(0.1, 0.1, 0.1);
         });
 
@@ -187,31 +187,31 @@ gltfLoader.load("/modele/Untitled2.glb", (gltf) => {
             window.livre5.scale.set(0.1, 0.1, 0.1);
         });
         gltfLoader.load("/modele/LCA.glb", (gltf) => {
-            window.livre7 = gltf.scene;
-            armoire.add(window.livre7);
-            window.livre7.position.set(0.7, 1.35, -0.1);
-            window.livre7.scale.set(0.1, 0.1, 0.1);
+            window.livre6 = gltf.scene;
+            armoire.add(window.livre6);
+            window.livre6.position.set(0.7, 1.35, -0.1);
+            window.livre6.scale.set(0.1, 0.1, 0.1);
         });
 
         gltfLoader.load("/modele/livre_casadepapel.glb", (gltf) => {
-            window.livre8 = gltf.scene;
-            armoire.add(window.livre8);
-            window.livre8.position.set(0.3, 1.03, -0.1);
-            window.livre8.scale.set(0.1, 0.1, 0.1);
+            window.livre7 = gltf.scene;
+            armoire.add(window.livre7);
+            window.livre7.position.set(0.3, 1.03, -0.1);
+            window.livre7.scale.set(0.1, 0.1, 0.1);
         });
 
         gltfLoader.load("/modele/Louvrepyramide.glb", (gltf) => {
-            window.livre9 = gltf.scene;
-            armoire.add(window.livre9);
-            window.livre9.position.set(0.3, 0.73, -0.1);
-            window.livre9.scale.set(0.1, 0.1, 0.1);
+            window.livre8 = gltf.scene;
+            armoire.add(window.livre8);
+            window.livre8.position.set(0.3, 0.73, -0.1);
+            window.livre8.scale.set(0.1, 0.1, 0.1);
         });
 
         gltfLoader.load("/modele/livre_badboy.glb", (gltf) => {
-            window.livre10 = gltf.scene;
-            armoire.add(window.livre10);
-            window.livre10.position.set(0.3, 0.42, -0.1);
-            window.livre10.scale.set(0.1, 0.1, 0.1);
+            window.livre9 = gltf.scene;
+            armoire.add(window.livre9);
+            window.livre9.position.set(0.3, 0.42, -0.1);
+            window.livre9.scale.set(0.1, 0.1, 0.1);
         });
 
         controls.update();
