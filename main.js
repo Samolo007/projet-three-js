@@ -32,12 +32,19 @@ const gltfLoader = new GLTFLoader();
 //Mettre le titre correct des films pour le quiz
 const FILMS = {
 
-    livre:  { correctTitle: "Magnum" },
+    livre:  { correctTitle: "magnum" },
     livre2: { correctTitle: "Tyler Rake" },
     livre3: { correctTitle: " Alerte cobra" },
     livre4: { correctTitle: "SWAT" },
     livre5: { correctTitle: "Sherlock" },
-    livre6: { correctTitle: "ROOKIE: Le flic de los Angeles" }
+    livre6: { correctTitle: "ROOKIE: Le flic de los Angeles" },
+    livre7: { correctTitle: "casadepapel"},
+    livre8: { correctTitle: "lupin"},
+    livre19:{ correctTitle: "badboy"},
+    livre10:{ correctTitle: "Colombo"},
+    livre11:{correctTitle:"blacklist"},
+    livre12:{correctTitle:"hawai5.0"},
+    livre13:{correctTitle:"007"}
 };
 //Fournir les positions Z originales pour chaque livre afin de les remettre en place après le quiz
 const ORIGINAL_Z = {
@@ -158,7 +165,7 @@ gltfLoader.load("/modele/Untitled2.glb", (gltf) => {
 
         controls.target.set(worldPos.x, worldPos.y, worldPos.z);
 
-        gltfLoader.load("/modele/ferrari blender.glb", (gltf) => {
+        gltfLoader.load("/modele/magnum blender.glb", (gltf) => {
             window.livre = gltf.scene;
             armoire.add(window.livre);
             window.livre.position.set(1.1, 0.15, -0.1);
@@ -207,7 +214,7 @@ gltfLoader.load("/modele/Untitled2.glb", (gltf) => {
             window.livre7.scale.set(0.1, 0.1, 0.1);
         });
 
-        gltfLoader.load("/modele/Louvrepyramide.glb", (gltf) => {
+        gltfLoader.load("/modele/Lupin.glb", (gltf) => {
             window.livre8 = gltf.scene;
             armoire.add(window.livre8);
             window.livre8.position.set(0.3, 0.73, -0.1);
@@ -237,17 +244,17 @@ gltfLoader.load("/modele/Untitled2.glb", (gltf) => {
         });
 
         gltfLoader.load("/modele/hawaï5.0.glb", (gltf) => {
-            window.livre10 = gltf.scene;
+            window.livre12 = gltf.scene;
             armoire.add(window.livre10);
-            window.livre10.position.set(1, 0.73, -0.1);
-            window.livre10.scale.set(0.1, 0.1, 0.1);
+            window.livre12.position.set(1, 0.73, -0.1);
+            window.livre12.scale.set(0.1, 0.1, 0.1);
         });
 
         gltfLoader.load("/modele/astonmartin.glb", (gltf) => {
-            window.livre7 = gltf.scene;
+            window.livre13 = gltf.scene;
             armoire.add(window.livre7);
-            window.livre7.position.set(0.8, 1.03, -0.1);
-            window.livre7.scale.set(0.1, 0.1, 0.1);
+            window.livre13.position.set(0.8, 1.03, -0.1);
+            window.livre13.scale.set(0.1, 0.1, 0.1);
         });
 
         controls.update();
