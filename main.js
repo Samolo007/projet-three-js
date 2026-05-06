@@ -214,6 +214,36 @@ gltfLoader.load("/modele/Untitled2.glb", (gltf) => {
             window.livre9.scale.set(0.1, 0.1, 0.1);
         });
 
+
+        gltfLoader.load("/modele/Colombo.glb", (gltf) => {
+            window.livre10 = gltf.scene;
+            armoire.add(window.livre10);
+            window.livre10.position.set(0.1, 0.73, -0.1);
+            window.livre10.scale.set(0.1, 0.1, 0.1);
+        });
+
+        gltfLoader.load("/modele/livre_blacklist.glb", (gltf) => {
+            window.livre11 = gltf.scene;
+            armoire.add(window.livre11);
+            window.livre11.position.set(0.7, 0.73, -0.1);
+            window.livre11.scale.set(0.1, 0.1, 0.1);
+        });
+
+        gltfLoader.load("/modele/hawaï5.0.glb", (gltf) => {
+            window.livre10 = gltf.scene;
+            armoire.add(window.livre10);
+            window.livre10.position.set(1, 0.73, -0.1);
+            window.livre10.scale.set(0.1, 0.1, 0.1);
+        });
+
+        gltfLoader.load("/modele/astonmartin.glb", (gltf) => {
+            window.livre7 = gltf.scene;
+            armoire.add(window.livre7);
+            window.livre7.position.set(0.8, 1.03, -0.1);
+            window.livre7.scale.set(0.1, 0.1, 0.1);
+        });
+
+
         controls.update();
 
         setTimeout(() => {
