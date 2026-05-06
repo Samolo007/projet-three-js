@@ -33,6 +33,7 @@ const FILMS = {
     livre:  { correctTitle: "Magnum" },
     livre2: { correctTitle: "Tyler rake" },
     livre3: { correctTitle: " Alerte cobra" },
+    livre3: { correctTitle: "Alerte Cobra" },
     livre4: { correctTitle: "SWAT" }
 };
 //Fournir les positions Z originales pour chaque livre afin de les remettre en place après le quiz
