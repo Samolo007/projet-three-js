@@ -31,7 +31,7 @@ const gltfLoader = new GLTFLoader();
 //Mettre le titre correct des films pour le quiz
 const FILMS = {
     livre:  { correctTitle: "Magnum" },
-    livre2: { correctTitle: "Tyler rake" },
+    livre2: { correctTitle: "Tyler Rake" },
     livre3: { correctTitle: " Alerte cobra" },
     livre3: { correctTitle: "Alerte Cobra" },
     livre4: { correctTitle: "SWAT" }
