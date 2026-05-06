@@ -28,6 +28,14 @@ directionalLight.position.set(100, 100, 100);
 scene.add(directionalLight);
 
 const gltfLoader = new GLTFLoader();
+const bgMusic = new Audio('/policesiren2-SF.mp3');
+bgMusic.loop = true;
+ 
+if (sessionStorage.getItem('playMusic') === 'true') {
+    sessionStorage.removeItem('playMusic');
+    bgMusic.play();
+    setTimeout(() => bgMusic.pause(), 5000); // ← arrête après 8s
+}
 
 //Mettre le titre correct des films pour le quiz
 const FILMS = {
@@ -40,7 +48,7 @@ const FILMS = {
     livre6: { correctTitle: "ROOKIE: Le flic de los Angeles" },
     livre7: { correctTitle: "casadepapel"},
     livre8: { correctTitle: "lupin"},
-    livre19:{ correctTitle: "badboy"},
+    livre9:{ correctTitle: "badboy"},
     livre10:{ correctTitle: "Colombo"},
     livre11:{correctTitle:"blacklist"},
     livre12:{correctTitle:"hawai5.0"},
@@ -59,7 +67,8 @@ const ORIGINAL_Z = {
     livre9: -0.1,
     livre10: -0.1,
     livre11: -0.1,
-    livre12: -0.1
+    livre12: -0.1,
+    livre13: -0.1
 };
 
 // ============================================================
@@ -245,14 +254,14 @@ gltfLoader.load("/modele/Untitled2.glb", (gltf) => {
 
         gltfLoader.load("/modele/hawaï5.0.glb", (gltf) => {
             window.livre12 = gltf.scene;
-            armoire.add(window.livre10);
+            armoire.add(window.livre12);
             window.livre12.position.set(1, 0.73, -0.1);
             window.livre12.scale.set(0.1, 0.1, 0.1);
         });
 
         gltfLoader.load("/modele/astonmartin.glb", (gltf) => {
             window.livre13 = gltf.scene;
-            armoire.add(window.livre7);
+            armoire.add(window.livre13);
             window.livre13.position.set(0.8, 1.03, -0.1);
             window.livre13.scale.set(0.1, 0.1, 0.1);
         });
