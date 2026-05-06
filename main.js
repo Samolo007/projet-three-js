@@ -138,7 +138,7 @@ input.addEventListener('keydown', (e) => { if (e.key === 'Enter') handleSubmit()
 // ============================================================
 // === CHARGEMENT DES MODÈLES
 // ============================================================
-gltfLoader.load("modele/Untitled2.glb", (gltf) => {
+gltfLoader.load("/modele/Untitled2.glb", (gltf) => {
     const model = gltf.scene;
     scene.add(model);
 
@@ -150,35 +150,35 @@ gltfLoader.load("modele/Untitled2.glb", (gltf) => {
 
         controls.target.set(worldPos.x, worldPos.y, worldPos.z);
 
-        gltfLoader.load("modele/ferrari blender.glb", (gltf) => {
+        gltfLoader.load("/modele/ferrari blender.glb", (gltf) => {
             window.livre = gltf.scene;
             armoire.add(window.livre);
             window.livre.position.set(0, 0.15, -0.1);
             window.livre.scale.set(0.1, 0.1, 0.1);
         });
 
-        gltfLoader.load("modele/TylerRake.glb", (gltf) => {
+        gltfLoader.load("/modele/TylerRake.glb", (gltf) => {
             window.livre2 = gltf.scene;
             armoire.add(window.livre2);
             window.livre2.position.set(-0.3, 1.65, -0.1);
             window.livre2.scale.set(0.1, 0.1, 0.1);
         });
 
-        gltfLoader.load("modele/alertecobra.glb", (gltf) => {
+        gltfLoader.load("/modele/alertecobra.glb", (gltf) => {
             window.livre3 = gltf.scene;
             armoire.add(window.livre3);
             window.livre3.position.set(0.3, 0.15, -0.1);
             window.livre3.scale.set(0.1, 0.1, 0.1);
         });
 
-        gltfLoader.load("modele/livre_swat.glb", (gltf) => {
+        gltfLoader.load("/modele/livre_swat.glb", (gltf) => {
             window.livre4 = gltf.scene;
             armoire.add(window.livre4);
             window.livre4.position.set(0.3, 1.65, -0.1);
             window.livre4.scale.set(0.1, 0.1, 0.1);
         });
 
-        gltfLoader.load("modele/livre_sherlock.glb", (gltf) => {
+        gltfLoader.load("/modele/livre_sherlock.glb", (gltf) => {
             window.livre5 = gltf.scene;
             armoire.add(window.livre5);
             window.livre5.position.set(0.3, 1, -0.1);
