@@ -184,6 +184,7 @@ gltfLoader.load("/modele/Untitled2.glb", (gltf) => {
             window.livre5.position.set(0.3, 1, -0.1);
             window.livre5.scale.set(0.1, 0.1, 0.1);
         });
+         
 
         controls.update();
 
