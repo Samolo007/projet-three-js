@@ -7,7 +7,7 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'index.html'),
         quiz: resolve(__dirname, 'quiz.html'),
-        accueil: resolve(__dirname, 'accueil.html') // Vu que tu as aussi un accueil.html
+        accueil: resolve(__dirname, 'accueil.html')
       },
     },
   },
