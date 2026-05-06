@@ -33,14 +33,16 @@ const FILMS = {
     livre:  { correctTitle: "Magnum" },
     livre2: { correctTitle: "Tyler rake" },
     livre3: { correctTitle: "Alerte Cobra" },
-    livre4: { correctTitle: "SWAT" }
+    livre4: { correctTitle: "SWAT" },
+    livre5: { correctTitle: "Blacklist" }
 };
 //Fournir les positions Z originales pour chaque livre afin de les remettre en place après le quiz
 const ORIGINAL_Z = {
     livre:  -0.1,
     livre2: -0.1,
     livre3: -0.1,
-    livre4: -0.1
+    livre4: -0.1,
+    livre5: -0.1
 };
 
 // ============================================================
@@ -170,8 +172,15 @@ gltfLoader.load("modele/Untitled2.glb", (gltf) => {
         gltfLoader.load("modele/livre_swat.glb", (gltf) => {
             window.livre4 = gltf.scene;
             armoire.add(window.livre4);
-            window.livre4.position.set(0, 1.65, -0.1);
+            window.livre4.position.set(0.3, 1.65, -0.1);
             window.livre4.scale.set(0.1, 0.1, 0.1);
+        });
+
+        gltfLoader.load("modele/livre_sherlock.glb", (gltf) => {
+            window.livre5 = gltf.scene;
+            armoire.add(window.livre5);
+            window.livre5.position.set(0.3, 1, -0.1);
+            window.livre5.scale.set(0.1, 0.1, 0.1);
         });
 
         controls.update();
@@ -302,6 +311,7 @@ window.addEventListener('click', (event) => {
     if (window.livre2 && raycaster.intersectObject(window.livre2, true).length > 0) { handleClick(window.livre2, 'livre2'); return; }
     if (window.livre3 && raycaster.intersectObject(window.livre3, true).length > 0) { handleClick(window.livre3, 'livre3'); return; }
     if (window.livre4 && raycaster.intersectObject(window.livre4, true).length > 0) { handleClick(window.livre4, 'livre4'); return; }
+    if (window.livre5 && raycaster.intersectObject(window.livre5, true).length > 0) { handleClick(window.livre5, 'livre5'); return; }
 });
 
 window.addEventListener('resize', () => {
