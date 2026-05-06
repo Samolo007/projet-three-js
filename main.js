@@ -185,6 +185,20 @@ gltfLoader.load("/modele/Untitled2.glb", (gltf) => {
             window.livre5.scale.set(0.1, 0.1, 0.1);
         });
 
+        gltfLoader.load("/modele/livre_casadepapel.glb", (gltf) => {
+            window.livre6 = gltf.scene;
+            armoire.add(window.livre6);
+            window.livre6.position.set(0.3, 1.33, -0.1);
+            window.livre6.scale.set(0.1, 0.1, 0.1);
+        });
+
+        gltfLoader.load("/modele/Louvrepyramide.glb", (gltf) => {
+            window.livre7 = gltf.scene;
+            armoire.add(window.livre7);
+            window.livre7.position.set(0.3, 0.75, -0.1);
+            window.livre7.scale.set(0.1, 0.1, 0.1);
+        });
+
         controls.update();
 
         setTimeout(() => {
