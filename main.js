@@ -308,7 +308,7 @@ gltfLoader.load("/modele/Untitled2.glb", (gltf) => {
                 onComplete: () => {
                     controls.enabled = true;
 
-                    controls.minPolarAngle = Math.PI / 2.5;   
+                    controls.minPolarAngle = Math.PI / 4;   
                     controls.maxPolarAngle = Math.PI / 2.5 ;
                     controls.enablePan = true;
 
@@ -319,7 +319,9 @@ gltfLoader.load("/modele/Untitled2.glb", (gltf) => {
                     controls.maxDistance = 5;
 
                     controls.enableDamping = true;
-                    controls.dampingFactor = 0.08;
+                    controls.dampingFactor = 0.05;
+                   
+
                 }
             });
         }, 1000);
